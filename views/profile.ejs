@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Anki Mock-up</title>
+  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/phosphor-icons@0.0.12/dist/phosphor.min.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="shortcut icon" href="ankiicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="container text-center">
+      <h1><i class="fa fa-star"></i> My Anki</h1>
+      <a href="/logout" class="btn btn-default btn-sm">Session Logoff</a>
+    </div>
+
+    <div class="p-3">
+
+      <!-- LOCAL INFORMATION -->
+      <div class="col">
+        <div class="well">
+          <h3><i class="fa fa-star"></i> My Decks</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Deck</th>
+                <th>New</th>
+                <th>Learn</th>
+                <th>Due</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#">Banki: Behavioral</a></td>
+                <td style="color:rgb(150	198	237	)">3</td>
+                <td style="color:red">30</td>
+                <td style="color: green">38</td>
+              </tr>
+              <tr>
+                <td><a href="#">Banki: Technical</a></td>
+                <td style="color:rgb(150	198	237	)">75</td>
+                <td style="color:red">45</td>
+                <td style="color: green">68</td>
+              </tr>
+              <tr>
+                <td><a href="#">Codewars</a></td>
+                <td style="color:rgb(150	198	237	)">10</td>
+                <td style="color:red">3</td>
+                <td style="color: green">13</td>
+              </tr>
+              <tr>
+                <td><a href="#">JavaScript</a></td>
+                <td style="color:rgb(150	198	237	)">4</td>
+                <td style="color:red">0</td>
+                <td style="color: green">57</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Studied 5 cards in 5 minutes today (60s/card): <em>You can do better than that!</em> </p>
+        </div>
+      </div>
+      <div class="">
+        <h3><i class="fa fa-star"></i> My Cards</h3>
+        <ul class="myanki">
+          <% for(var i=0; i<myanki.length; i++) {%>
+            <%if(!myanki[i].smile && !myanki[i].sad){%>
+              <li class="cards">
+                <span>
+                  <%= myanki[i].front %>
+                </span>
+                <span>
+                  <%= myanki[i].back %>
+                </span>
+                <span>
+                  <%= myanki[i].smile %>
+                </span>
+                <span><i class="ph ph-smiley"></i></span>
+                <span>
+                  <%= myanki[i].sad %>
+                </span>
+                <span><i class="ph ph-smiley-sad"></i></span>
+                <!-- <span><i class="ph ph-trash"></i></span> -->
+              </li>
+              <% } %>
+                <% } %>
+        </ul>
+      </div>
+      <div class="add">
+        <h2>Add a new flashcard</h2>
+        <% if (user.local.email) { %>
+          <form action="/myanki" method="POST">
+            <input type="text" placeholder="front of card" name="front">
+            <input type="text" placeholder="back of card" name="back">
+            <button type="submit">Add</button>
+          </form>
+      </div>
+      <% } %>
+        <div class="col-6">
+          <section class="easy-section">
+            <h3><i class="ph ph-smiley"></i> Easy</h3>
+            <ul class="myanki">
+              <% for(var i=0; i<myanki.length; i++) {%>
+                <%if(myanki[i].smile==="easy" ){%>
+                  <li class="cards">
+                    <span>
+                      <%= myanki[i].front %>
+                    </span>
+                    <span>
+                      <%= myanki[i].back %>
+                    </span>
+                    <span>
+                      <!-- <%= myanki[i].smile %> -->
+                    </span>
+                    <!-- <span><i class="ph ph-smiley"></i></span> -->
+                    <span>
+                      <%= myanki[i].sad %>
+                    </span>
+                    <!-- <span><i class="ph ph-smiley-sad"></i></span> -->
+                    <span><i class="ph ph-trash"></i></span>
+                  </li>
+                  <% } %>
+                    <% } %>
+            </ul>
+          </section>
+          <section class="hard-section">
+            <h3><i class="ph ph-smiley-sad"></i> Hard</h3>
+            <ul class="myanki">
+              <% for(var i=0; i<myanki.length; i++) {%>
+                <%if(myanki[i].sad==="hard" ){%>
+                  <li class="cards">
+                    <span>
+                      <%= myanki[i].front %>
+                    </span>
+                    <span>
+                      <%= myanki[i].back %>
+                    </span>
+                    <span>
+                      <%= myanki[i].smile %>
+                    </span>
+                    <!-- <span><i class="ph ph-smiley"></i></span> -->
+                    <span>
+                      <!-- <%= myanki[i].sad %> -->
+                    </span>
+                    <!-- <span><i class="ph ph-smiley-sad"></i></span> -->
+                    <span><i class="ph ph-trash"></i></span>
+                  </li>
+                  <% } %>
+                    <% } %>
+            </ul>
+        </div>
+        </section>
+
+
+        <script src="main.js"></script>
+
+</body>
+
+</html>
